@@ -1,0 +1,36 @@
+<% if can?(:new, RealEstate) %>
+	<div class="row">
+	  <div class="col-md-12 bg-light text-right">
+			<div class="button__btn">
+	      <%= link_to url_for(controller: controller_name, action: :new), class: "btn btn-secondary btn-lg" do %>
+	        Add Item
+	      <% end %>
+	    </div>
+		</div>
+	</div>
+<% end %>
+<br>
+
+<div class="card-deck">
+	<div class="row">
+		<% @real_estate.each do |item| %>
+			<div class="col-md-3" style= "padding-bottom: 10px;">
+			  <div class="card">
+			  	<% if item.images.attached? %>
+			  		<%= image_tag item.images.first, style: 'height:30%;width:40%;padding-right: 10px;' %>
+			  	<% end %>
+			    <div class="card-body">
+			      <h5 class="card-title"><%= item.type %></h5>
+			      <p class="card-text"> <%= item.address %> </p>
+			    </div>
+			    <div class="card-footer">
+			    	<% if can?(:buy, RealEstate) %>
+			      	<%= link_to "Buy", buy_real_estate_path(item), class: "btn btn-primary" %>
+			      <% end %>
+			      <%= link_to "Show", real_estate_path(item), class: "btn btn-primary" %>
+			    </div>
+			  </div>
+			</div>
+		<% end %>
+	</div>
+</div>

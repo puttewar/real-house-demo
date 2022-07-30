@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: MyString
+  address: MyString
+  rooms: 1
+  sqmt: 1
+  floors: 1
+  air_condition: false
+  price: 9.99
+  units: 1
+  shops: 1
+  parking: 1
+  type: 
+
+two:
+  owner: MyString
+  address: MyString
+  rooms: 1
+  sqmt: 1
+  floors: 1
+  air_condition: false
+  price: 9.99
+  units: 1
+  shops: 1
+  parking: 1
+  type: 

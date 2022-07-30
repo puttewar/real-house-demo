@@ -1,0 +1,2 @@
+class CommecialUnit < RealEstate
+end

@@ -1,0 +1,117 @@
+<div class="card">
+  <div class="card-header">
+    <h6 class="section-card-title">Real Estate<i class="fa fa-sitemap" aria-hidden="true"></i></h6>
+  </div>
+  <div class="card-body">
+    <div class="form">
+      <%= form_with url: "/real_estate", scope: :real_estate, local: true do |f| %>
+        <% if @real_estate.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@real_estate.errors.count, "error") %> prohibited this real estate from being saved:</h2>
+
+            <ul>
+            <% @real_estate.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <%= f.hidden_field :owner, value: current_user.id %>
+        <p>
+          <%= f.label :address, 'Real Estate Type :' %>
+          <%= f.select :type, options_for_select(RealEstate.select(:type).map(&:type).uniq), { prompt: "Select type" }, :class => "form-control", :style => "height:43px;margin-top: 3px;", required: true %>
+        </p>
+
+        <p>
+          <%= f.label :address, 'Address :' %>
+          <%= f.text_field :address, :placeholder => " Enter address here." , class: "form-control form-control-sm"%>
+        </p>
+
+        <p class="room d-none">
+          <%= f.label :rooms, 'Rooms :'%>
+          <%= f.text_field :rooms, :placeholder => " Enter rooms here.", class: "form-control form-control-sm" %>
+        </p>
+
+        <p>
+          <%= f.label :sqmt, 'Square meter :'%>
+          <%= f.text_field :sqmt, :placeholder => " Enter square meter here.", class: "form-control form-control-sm" %>
+        </p>
+
+        <p class="floor d-none">
+          <%= f.label :floors, 'Floors :'%>
+          <%= f.text_field :floors, :placeholder => " Enter floors here.", class: "form-control form-control-sm" %>
+        </p>
+
+        <p class="air_cond d-none">
+          <%= f.check_box :air_condition %>
+          <%= f.label :air_condition, 'Air condition'%>
+        </p>
+
+        <p>
+          <%= f.label :price, 'Price :'%>
+          <%= f.text_field :price, :placeholder => " Enter price here.", class: "form-control form-control-sm" %>
+        </p>
+
+        <p class="unit d-none">
+          <%= f.label :units, 'Units :'%>
+          <%= f.text_field :units, :placeholder => " Enter units here.", class: "form-control form-control-sm" %>
+        </p>
+
+        <p class="shop d-none">
+          <%= f.label :shops, 'Shops :'%>
+          <%= f.text_field :shops, :placeholder => " Enter shops here.", class: "form-control form-control-sm" %>
+        </p>
+
+        <p class="parking d-none">
+          <%= f.label :parking, 'Parking :'%>
+          <%= f.text_field :parking, :placeholder => " Enter parking here.", class: "form-control form-control-sm" %>
+        </p>
+
+        <p>
+          <%= f.label :images, 'Images :'%>
+          <%= f.file_field :images, multiple: true, class: "form-control form-control-sm" %>
+        </p>
+
+        <%= f.submit "S U B M I T", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+  .d-none {
+    display: none;
+  }
+</style>
+
+
+<script type="text/javascript">
+  $('document').ready(function(){
+    $('#real_estate_type').change(function(){
+      var type = $(this).val(); 
+      if (type == "House") {
+        $('.unit').addClass('d-none');
+        $('.shop').addClass('d-none');
+        $('.parking').addClass('d-none');
+        $('.room').removeClass('d-none');
+        $('.floor').removeClass('d-none');
+        $('.air_cond').removeClass('d-none');
+      }
+      else if (type == "ComplexBuilding") {
+        $('.unit').removeClass('d-none');
+        $('.room').addClass('d-none');
+        $('.floor').addClass('d-none');
+        $('.air_cond').addClass('d-none');
+        $('.parking').addClass('d-none');
+        $('.shop').addClass('d-none');
+      } else if (type == "CommecialUnit") {
+        $('.shop').removeClass('d-none');
+        $('.parking').removeClass('d-none');
+        $('.room').addClass('d-none');
+        $('.floor').addClass('d-none');
+        $('.air_cond').addClass('d-none');
+        $('.unit').addClass('d-none');
+      }
+    });
+  });
+</script>

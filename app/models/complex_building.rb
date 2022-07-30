@@ -1,0 +1,2 @@
+class ComplexBuilding < RealEstate
+end

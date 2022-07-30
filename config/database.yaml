@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: 'localhost'
+  port: 5432
+  timeout: 5000
+
+development:
+  <<: *default
+  database: real_estate_dev
+
+
+test:
+  <<: *default
+  database: real_estate_test
+
+production:
+  <<: *default
+  database: real_estate_production
+  password: <%= Rails.application.credentials.dig(:database_password) %>
+  username: <%= Rails.application.credentials.dig(:production_database_username) %>
+  host: <%= Rails.application.credentials.dig(:production_database_host) %>

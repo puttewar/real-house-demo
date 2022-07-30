@@ -1,0 +1,39 @@
+<div class="row">
+   <div class="col-sm-6">
+<table cellspacing="4" cellpadding="6" border="1">
+ <tbody>
+  <p> Address             : <%= @real_estate.address %> </p>
+  <% if @real_estate.rooms.present? %>
+   <p> Rooms               : <%= @real_estate.rooms %> </p>
+  <% end %>
+  <p> Square Meter        : <%= @real_estate.sqmt %> </p>
+  <% if @real_estate.floors.present? %>
+    <p> Floor               : <%= @real_estate.floors %> </p>
+  <% end %>
+  <% if @real_estate.air_condition.present? %>
+    <p> Air condition       : <%= @real_estate.air_condition %> </p>
+  <% end %>
+  <p> Price               : <%= @real_estate.price %> </p>
+  <% if @real_estate.units.present? %>
+    <p> Units               : <%= @real_estate.units %> </p>
+  <% end %>
+  <% if @real_estate.shops.present? %>
+    <p> Shops               : <%= @real_estate.shops %> </p>
+  <% end %>
+  <% if @real_estate.parking.present? %>
+    <p> Parking             : <%= @real_estate.parking %> </p>
+  <% end %>
+
+  <% if @real_estate.images.attached? %>
+      <p> Images : </p>
+      <% @real_estate.images.each do |image| %>
+        <%= image_tag image, border: '0', style: 'height:30%;width:40%;padding-right: 10px;' %>
+
+      <% end %>
+   <% end %>
+ </tbody>
+</table>
+ </div>
+</div>
+
+<%= link_to "back",real_estate_index_path %>
